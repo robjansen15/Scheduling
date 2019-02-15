@@ -10,6 +10,7 @@ namespace Schedule
     public class Core
     {
         private string InputFile { get; set; }
+        private List<Room> Rooms { get; set; }
 
         public Core(string inputFile)
         {
@@ -18,11 +19,29 @@ namespace Schedule
 
         public void Run()
         {
-            var events = GetEvents();
-            //READ CSV
+            //Read CSV
+            var inputEvents = GetEvents();
+            //Convert the events
+            var events = Event.Convert(inputEvents);
+            //Randomize data
 
-            //RANDOMIZE DATA
-           
+            foreach(var evnt in events)
+            {
+                List<Room> applicableRooms = Rooms.FindAll(x => x.CanAssignRoom(evnt));
+
+                if (applicableRooms.Any())
+                {
+                    Room room = applicableRooms.OrderBy(i => i.CurrentAllocatedTime).FirstOrDefault();
+                    Rooms.FirstOrDefault(x => x.RoomId == room.RoomId).AssignRoom(evnt);
+                }
+                else
+                {
+                    //*SHOULD NEVER GET HERE*
+                    throw new ArgumentException("No applicable rooms");
+                }
+                
+            }
+
         }
 
         private List<InputEvent> GetEvents()
@@ -35,6 +54,11 @@ namespace Schedule
             }
 
             return events;
+        }
+
+        private void ReorderRooms()
+        {
+            Rooms = Rooms.OrderBy(x => x.CurrentAllocatedTime).ToList();
         }
     }
 }

@@ -21,8 +21,16 @@ namespace Schedule
         public string ChoiceNationality { get; set; }
         public string DuetPartner { get; set; }
         public string PreviousPoints { get; set; }
+        public int Time { get; set; }
 
-        public static Event Convert(InputEvent inputEvent)
+        public static List<Event> Convert(List<InputEvent> inputEvents)
+        {
+            var events = new List<Event>();
+            inputEvents.ForEach(inputEvent => events.Add(Convert(inputEvent)));
+            return events;
+        }
+
+        private static Event Convert(InputEvent inputEvent)
         {
             return new Event()
             {
@@ -40,7 +48,8 @@ namespace Schedule
                 ChoiceComposer = inputEvent.ChoiceComposer,
                 ChoiceNationality = inputEvent.ChoiceNationality,
                 DuetPartner = inputEvent.DuetPartner,
-                PreviousPoints = inputEvent.PreviousPoints
+                PreviousPoints = inputEvent.PreviousPoints,
+                Time = Levels.GetLevel(inputEvent.ClassLevel) > 10 ? 7 : 5
             };
         }
 

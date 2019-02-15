@@ -6,20 +6,34 @@ namespace Schedule
 {
     public class Room
     {
+        public int RoomId { get; set; }
         public int MinLevel { get; set; }
         public int MaxLevel { get; set; }
         public Teachers Teacher { get; set; }
 
         public int CurrentAllocatedTime { get; set; } // In Minutes
-        List<InputEvent> RoomEvents { get; set; }
+        List<Event> RoomEvents { get; set; }
 
         public Room(int minLevel, int maxLevel, Teachers teacher)
         {
             this.MinLevel = minLevel;
             this.MaxLevel = maxLevel;
             this.Teacher = teacher;
+            RoomEvents = new List<Event>();
         }
 
+        public void AssignRoom(Event evnt)
+        {
+            CurrentAllocatedTime += evnt.Time;
+            RoomEvents.Add(evnt);
+        }
+
+        public bool CanAssignRoom(Event evnt)
+        {
+            //Teacher != Teacher
+            //Min Max Level
+            return true;
+        }
 
     }
 }
