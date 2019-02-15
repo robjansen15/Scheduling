@@ -30,8 +30,15 @@ namespace Schedule
 
         public bool CanAssignRoom(Event evnt)
         {
-            //Teacher != Teacher
-            //Min Max Level
+            if (this.Teacher == evnt.TeacherName)
+                return false;
+
+            if (this.MaxLevel > evnt.ClassLevel)
+                return false;
+
+            if (this.MinLevel < evnt.ClassLevel)
+                return false;
+
             return true;
         }
 
