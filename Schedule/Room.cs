@@ -42,6 +42,9 @@ namespace Schedule
             if (this.MinLevel > evnt.ClassLevel)
                 return false;
 
+            if (!this.SupportedEventTypes.Contains(evnt.TypeOfEvent))
+                return false;
+
             return true;
         }
 
