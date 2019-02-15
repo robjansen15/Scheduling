@@ -90,7 +90,7 @@ namespace Schedule
                     return EventType.NON_PIANO;
                 case "TROMBONE SOLO":
                     return EventType.NON_PIANO;
-                case "FLUTE PATRIOTIC AND FOLK:
+                case "FLUTE PATRIOTIC AND FOLK":
                     return EventType.NON_PIANO;
                 case "SOPRANO RECORDER SOLO":
                     return EventType.NON_PIANO;

@@ -10,15 +10,18 @@ namespace Schedule
         public int MinLevel { get; set; }
         public int MaxLevel { get; set; }
         public Teachers Teacher { get; set; }
+        public List<EventType> SupportedEventTypes { get; set; }
 
         public int CurrentAllocatedTime { get; set; } // In Minutes
         List<Event> RoomEvents { get; set; }
 
-        public Room(int minLevel, int maxLevel, Teachers teacher)
+        public Room(int roomId, int minLevel, int maxLevel, Teachers teacher, List<EventType> supportedEventTypes)
         {
+            this.RoomId = roomId;
             this.MinLevel = minLevel;
             this.MaxLevel = maxLevel;
             this.Teacher = teacher;
+            this.SupportedEventTypes = supportedEventTypes;
             RoomEvents = new List<Event>();
         }
 
@@ -33,10 +36,10 @@ namespace Schedule
             if (this.Teacher == evnt.TeacherName)
                 return false;
 
-            if (this.MaxLevel > evnt.ClassLevel)
+            if (this.MaxLevel < evnt.ClassLevel)
                 return false;
 
-            if (this.MinLevel < evnt.ClassLevel)
+            if (this.MinLevel > evnt.ClassLevel)
                 return false;
 
             return true;
