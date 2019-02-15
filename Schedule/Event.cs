@@ -12,7 +12,7 @@ namespace Schedule
         public string BirthDate { get; set; }
         public string ClubId { get; set; }
         public Teachers TeacherName { get; set; }
-        public string TypeOfEvent { get; set; }
+        public EventType TypeOfEvent { get; set; }
         public int ClassLevel { get; set; }
         public string RequiredComposition { get; set; }
         public string RequiredComposer { get; set; }
@@ -40,7 +40,7 @@ namespace Schedule
                 BirthDate = inputEvent.BirthDate,
                 ClubId = inputEvent.ClubId,
                 TeacherName = GetTeacher(inputEvent.TeacherName),
-                TypeOfEvent = inputEvent.TypeOfEvent,
+                TypeOfEvent = GetEventType(inputEvent.TypeOfEvent),
                 ClassLevel = Levels.GetLevel(inputEvent.ClassLevel),
                 RequiredComposition = inputEvent.RequiredComposition,
                 RequiredComposer = inputEvent.RequiredComposer,

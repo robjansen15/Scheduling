@@ -25,7 +25,8 @@ namespace Schedule
             var events = Event.Convert(inputEvents);
             //Randomize data
 
-            foreach(var evnt in events)
+
+            foreach(var evnt in events.FindAll(x => x.TypeOfEvent == EventType.LYNN_FREEMAN_OLSON))
             {
                 List<Room> applicableRooms = Rooms.FindAll(x => x.CanAssignRoom(evnt));
 
@@ -34,12 +35,39 @@ namespace Schedule
                     Room room = applicableRooms.OrderBy(i => i.CurrentAllocatedTime).FirstOrDefault();
                     Rooms.FirstOrDefault(x => x.RoomId == room.RoomId).AssignRoom(evnt);
                 }
-                else
+            }
+
+            foreach (var evnt in events.FindAll(x => x.TypeOfEvent == EventType.NON_PIANO))
+            {
+                List<Room> applicableRooms = Rooms.FindAll(x => x.CanAssignRoom(evnt));
+
+                if (applicableRooms.Any())
                 {
-                    //*SHOULD NEVER GET HERE*
-                    throw new ArgumentException("No applicable rooms");
+                    Room room = applicableRooms.OrderBy(i => i.CurrentAllocatedTime).FirstOrDefault();
+                    Rooms.FirstOrDefault(x => x.RoomId == room.RoomId).AssignRoom(evnt);
                 }
-                
+            }
+
+            foreach (var evnt in events.FindAll(x => x.TypeOfEvent == EventType.PIANO_SIGHT_READING))
+            {
+                List<Room> applicableRooms = Rooms.FindAll(x => x.CanAssignRoom(evnt));
+
+                if (applicableRooms.Any())
+                {
+                    Room room = applicableRooms.OrderBy(i => i.CurrentAllocatedTime).FirstOrDefault();
+                    Rooms.FirstOrDefault(x => x.RoomId == room.RoomId).AssignRoom(evnt);
+                }
+            }
+
+            foreach (var evnt in events.FindAll(x => x.TypeOfEvent == EventType.PIANO))
+            {
+                List<Room> applicableRooms = Rooms.FindAll(x => x.CanAssignRoom(evnt));
+
+                if (applicableRooms.Any())
+                {
+                    Room room = applicableRooms.OrderBy(i => i.CurrentAllocatedTime).FirstOrDefault();
+                    Rooms.FirstOrDefault(x => x.RoomId == room.RoomId).AssignRoom(evnt);
+                }
             }
 
         }
