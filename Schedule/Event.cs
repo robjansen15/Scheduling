@@ -12,7 +12,7 @@ namespace Schedule
         public string BirthDate { get; set; }
         public string ClubId { get; set; }
         public Teachers TeacherName { get; set; }
-        public string EventName { get; set; }
+        public string TypeOfEvent { get; set; }
         public int ClassLevel { get; set; }
         public string RequiredComposition { get; set; }
         public string RequiredComposer { get; set; }
@@ -31,7 +31,16 @@ namespace Schedule
                 LastName = inputEvent.LastName,
                 BirthDate = inputEvent.BirthDate,
                 ClubId = inputEvent.ClubId,
-                TeacherName = 
+                TeacherName = GetTeacher(inputEvent.TeacherName),
+                TypeOfEvent = inputEvent.TypeOfEvent,
+                ClassLevel = Levels.GetLevel(inputEvent.ClassLevel),
+                RequiredComposition = inputEvent.RequiredComposition,
+                RequiredComposer = inputEvent.RequiredComposer,
+                ChoiceComposition = inputEvent.ChoiceComposition,
+                ChoiceComposer = inputEvent.ChoiceComposer,
+                ChoiceNationality = inputEvent.ChoiceNationality,
+                DuetPartner = inputEvent.DuetPartner,
+                PreviousPoints = inputEvent.PreviousPoints
             };
         }
 
@@ -39,9 +48,22 @@ namespace Schedule
         {
             switch (teacher)
             {
-                case "":
+                case "MARK SABITINO":
                     return Teachers.Sabitino;
             }
+
+            return Teachers.UNKNOWN;
+        }
+
+        private static EventType GetEventType(string eventName)
+        {
+            switch (eventName)
+            {
+                case "":
+                    return EventType.LYNN_FREEMAN_OLSON;
+            }
+
+            return EventType.UNKNOWN;
         }
     }
 }

@@ -4,8 +4,12 @@ using System.Text;
 
 namespace Schedule
 {
-    public class EventType
+    public enum EventType
     {
-
+        PIANO_SIGHT_READING,
+        LYNN_FREEMAN_OLSON,
+        NON_PIANO,
+        PIANO,
+        UNKNOWN
     }
 }

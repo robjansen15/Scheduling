@@ -12,7 +12,7 @@ namespace Schedule
         public string BirthDate { get; set; }
         public string ClubId { get; set; }
         public string TeacherName { get; set; }
-        public string EventName { get; set; }
+        public string TypeOfEvent { get; set; }
         public string ClassLevel { get; set; }
         public string RequiredComposition { get; set; }
         public string RequiredComposer { get; set; }

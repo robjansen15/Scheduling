@@ -14,6 +14,7 @@ namespace Schedule
         Godfrey,
         Sabitino,
         Sidwell,
-        Scott
+        Scott,
+        UNKNOWN
     }
 }
