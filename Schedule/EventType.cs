@@ -9,7 +9,6 @@ namespace Schedule
         PIANO_SIGHT_READING,
         LYNN_FREEMAN_OLSON,
         NON_PIANO,
-        PIANO,
-        UNKNOWN
+        PIANO
     }
 }

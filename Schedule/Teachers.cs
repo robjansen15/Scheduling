@@ -12,7 +12,7 @@ namespace Schedule
         Unknown4,
         Lewis,
         Godfrey,
-        Sabitino,
+        Sabatino,
         Sidwell,
         Scott,
         UNKNOWN

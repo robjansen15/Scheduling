@@ -48,8 +48,20 @@ namespace Schedule
         {
             switch (teacher)
             {
-                case "MARK SABITINO":
-                    return Teachers.Sabitino;
+                case "MARK SABATINO":
+                    return Teachers.Sabatino;
+                case "LINDA SABATINO":
+                    return Teachers.Sabatino;
+                case "SARAH SABATINO":
+                    return Teachers.Sabatino;
+                case "LINDA SIDWELL":
+                    return Teachers.Sidwell;
+                case "CHERYL SCOTT":
+                    return Teachers.Scott;
+                case "SHARON LEWIS":
+                    return Teachers.Lewis;
+                default:
+                    return Teachers.UNKNOWN;
             }
 
             return Teachers.UNKNOWN;
@@ -59,8 +71,55 @@ namespace Schedule
         {
             switch (eventName)
             {
-                case "":
+                case "LYNN FREEMAN OLSON":
                     return EventType.LYNN_FREEMAN_OLSON;
+                case "PIANO SIGHTREADING":
+                    return EventType.PIANO_SIGHT_READING;
+                case "SAXOPHONE SOLO":
+                    return EventType.NON_PIANO;
+                case "GUITAR SIGHTREADING CLASSICAL":
+                    return EventType.NON_PIANO;
+                case "VIOLIN PATRIOTIC AND FOLK":
+                    return EventType.NON_PIANO;
+                case "TROMBONE SOLO":
+                    return EventType.NON_PIANO;
+                case "FLUTE PATRIOTIC AND FOLK:
+                    return EventType.NON_PIANO;
+                case "SOPRANO RECORDER SOLO":
+                    return EventType.NON_PIANO;
+                case "FLUTE SOLO":
+                    return EventType.NON_PIANO;
+                case "TRUMPET SOLO":
+                    return EventType.NON_PIANO;
+                case "CLARINET SIGHTREADING":
+                    return EventType.NON_PIANO;
+                case "GUITAR PATRIOTIC AND FOLK":
+                    return EventType.NON_PIANO;
+                case "SAXOPHONE SIGHTREADING":
+                    return EventType.NON_PIANO;
+                case "SOPRANO RECORDER PATRIOTIC AND FOLK":
+                    return EventType.NON_PIANO;
+                case "GUITAR SOLO":
+                    return EventType.NON_PIANO;
+                case "BASSOON SOLO":
+                    return EventType.NON_PIANO;
+                case "CLARINET PATRIOTIC AND FOLK":
+                    return EventType.NON_PIANO;
+                case "VIOLIN SOLO":
+                    return EventType.NON_PIANO;
+                case "TRUMPET SIGHTREADING":
+                    return EventType.NON_PIANO;
+                case "TRUMPET PATRIOTIC AND FOLK":
+                    return EventType.NON_PIANO;
+                case "CLARINET SOLO":
+                    return EventType.NON_PIANO;
+                case "SAXOPHONE PATRIOTIC AND FOLK":
+                    return EventType.NON_PIANO;
+                case "SOPRANO RECORDER SIGHTREADING?":
+                    return EventType.NON_PIANO;
+                default:
+                    return EventType.PIANO;
+
             }
 
             return EventType.UNKNOWN;
