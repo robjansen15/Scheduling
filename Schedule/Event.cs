@@ -72,8 +72,6 @@ namespace Schedule
                 default:
                     return Teachers.UNKNOWN;
             }
-
-            return Teachers.UNKNOWN;
         }
 
         private static EventType GetEventType(string eventName)
@@ -128,10 +126,7 @@ namespace Schedule
                     return EventType.NON_PIANO;
                 default:
                     return EventType.PIANO;
-
             }
-
-            return EventType.UNKNOWN;
         }
     }
 }
