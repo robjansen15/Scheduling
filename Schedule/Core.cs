@@ -12,15 +12,14 @@ namespace Schedule
         private string InputFile { get; set; }
         private List<Room> Rooms = new List<Room>
         {
-            new Room(0, 0, 10, Teachers.Unknown3, new List<EventType>{ EventType.PIANO, EventType.NON_PIANO, EventType.LYNN_FREEMAN_OLSON, EventType.PIANO_SIGHT_READING }),
-            new Room(1, 11, 20, Teachers.Lewis, new List<EventType>{ EventType.PIANO, EventType.NON_PIANO, EventType.LYNN_FREEMAN_OLSON, EventType.PIANO_SIGHT_READING }),
-            new Room(2, 0, 10, Teachers.Unknown2, new List<EventType>{ EventType.PIANO, EventType.NON_PIANO, EventType.LYNN_FREEMAN_OLSON, EventType.PIANO_SIGHT_READING }),
-            new Room(3, 0, 10, Teachers.Unknown1, new List<EventType>{ EventType.PIANO, EventType.NON_PIANO, EventType.LYNN_FREEMAN_OLSON, EventType.PIANO_SIGHT_READING }),
-            new Room(4, 0, 10, Teachers.Godfrey, new List<EventType>{ EventType.PIANO, EventType.NON_PIANO, EventType.LYNN_FREEMAN_OLSON, EventType.PIANO_SIGHT_READING}),
-            new Room(5, 0, 20, Teachers.Sabatino, new List<EventType>{ EventType.PIANO, EventType.NON_PIANO, EventType.LYNN_FREEMAN_OLSON, EventType.PIANO_SIGHT_READING }),
-            new Room(6, 0, 10, Teachers.Sidwell, new List<EventType>{ EventType.PIANO, EventType.NON_PIANO, EventType.LYNN_FREEMAN_OLSON, EventType.PIANO_SIGHT_READING }),
-            new Room(7, 0, 20, Teachers.Scott, new List<EventType>{ EventType.PIANO, EventType.NON_PIANO, EventType.LYNN_FREEMAN_OLSON, EventType.PIANO_SIGHT_READING }),
-            new Room(8, 0, 10, Teachers.Unknown4, new List<EventType>{ EventType.PIANO, EventType.NON_PIANO, EventType.LYNN_FREEMAN_OLSON, EventType.PIANO_SIGHT_READING }),
+            new Room(0, 0, 10, Teachers.Unknown3, new List<EventType>{ EventType.PIANO, EventType.PIANO_SIGHT_READING }),
+            new Room(1, 11, 20, Teachers.Lewis, new List<EventType>{ EventType.PIANO, EventType.PIANO_SIGHT_READING }),
+            new Room(2, 0, 10, Teachers.Scott, new List<EventType>{ EventType.NON_PIANO }),
+            new Room(3, 0, 10, Teachers.Unknown1, new List<EventType>{ EventType.PIANO, EventType.NON_PIANO}),
+            new Room(4, 0, 10, Teachers.Godfrey, new List<EventType>{ EventType.PIANO, EventType.PIANO_SIGHT_READING }),
+            new Room(5, 0, 10, Teachers.Sabatino, new List<EventType>{ EventType.PIANO }),
+            new Room(6, 0, 10, Teachers.Sidwell, new List<EventType>{ EventType.PIANO, EventType.LYNN_FREEMAN_OLSON })
+            
         };
 
         public Core(string inputFile)
