@@ -14,9 +14,9 @@ namespace Schedule
         {
             new Room(0, 0, 10, Teachers.Unknown3, new List<EventType>{ EventType.PIANO, EventType.PIANO_SIGHT_READING }),
             new Room(1, 11, 20, Teachers.Lewis, new List<EventType>{ EventType.PIANO, EventType.PIANO_SIGHT_READING }),
-            new Room(2, 0, 10, Teachers.Scott, new List<EventType>{ EventType.NON_PIANO }),
-            new Room(3, 0, 10, Teachers.Unknown1, new List<EventType>{ EventType.PIANO, EventType.NON_PIANO}),
-            new Room(4, 0, 10, Teachers.Godfrey, new List<EventType>{ EventType.PIANO, EventType.PIANO_SIGHT_READING }),
+            new Room(2, 0, 10, Teachers.Scott, new List<EventType>{ EventType.PIANO }),
+            new Room(3, 0, 10, Teachers.Unknown1, new List<EventType>{ EventType.PIANO }),
+            new Room(4, 0, 20, Teachers.Godfrey, new List<EventType>{ EventType.PIANO, EventType.PIANO_SIGHT_READING, EventType.NON_PIANO }),
             new Room(5, 0, 10, Teachers.Sabatino, new List<EventType>{ EventType.PIANO }),
             new Room(6, 0, 10, Teachers.Sidwell, new List<EventType>{ EventType.PIANO, EventType.LYNN_FREEMAN_OLSON })
             
@@ -69,6 +69,10 @@ namespace Schedule
             foreach (var evnt in events.FindAll(x => x.TypeOfEvent == EventType.PIANO_SIGHT_READING))
             {
                 List<Room> applicableRooms = Rooms.FindAll(x => x.CanAssignRoom(evnt));
+                for(int i = 0; i < Rooms.Count; i++)
+                {
+                    Rooms[i].RoomBuffer = 3;
+                }
 
                 if (applicableRooms.Any())
                 {
@@ -84,6 +88,10 @@ namespace Schedule
             foreach (var evnt in events.FindAll(x => x.TypeOfEvent == EventType.PIANO))
             {
                 List<Room> applicableRooms = Rooms.FindAll(x => x.CanAssignRoom(evnt));
+                for (int i = 0; i < Rooms.Count; i++)
+                {
+                    Rooms[i].RoomBuffer = 5;
+                }
 
                 if (applicableRooms.Any())
                 {

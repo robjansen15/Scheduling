@@ -11,6 +11,7 @@ namespace Schedule
         public int MaxLevel { get; set; }
         public Teachers Teacher { get; set; }
         public List<EventType> SupportedEventTypes { get; set; }
+        public int RoomBuffer { get; set; } = 0;
 
         public int CurrentAllocatedTime { get; set; } // In Minutes
         List<Event> RoomEvents { get; set; }
@@ -39,7 +40,7 @@ namespace Schedule
             if (this.MaxLevel < evnt.ClassLevel)
                 return false;
 
-            if (this.MinLevel > evnt.ClassLevel)
+            if (this.MinLevel - RoomBuffer > evnt.ClassLevel)
                 return false;
 
             if (!this.SupportedEventTypes.Contains(evnt.TypeOfEvent))
