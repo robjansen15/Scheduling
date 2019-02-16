@@ -10,6 +10,8 @@ namespace Schedule
     public class Core
     {
         private string InputFile { get; set; }
+        private string OutputFile { get; set; }
+
         private List<Room> Rooms = new List<Room>
         {
             new Room(0, 0, 10, Teachers.Unknown3, new List<EventType>{ EventType.PIANO, EventType.PIANO_SIGHT_READING }),
@@ -18,13 +20,13 @@ namespace Schedule
             new Room(3, 0, 10, Teachers.Unknown1, new List<EventType>{ EventType.PIANO }),
             new Room(4, 0, 20, Teachers.Godfrey, new List<EventType>{ EventType.PIANO, EventType.PIANO_SIGHT_READING, EventType.NON_PIANO }),
             new Room(5, 0, 10, Teachers.Sabatino, new List<EventType>{ EventType.PIANO }),
-            new Room(6, 0, 10, Teachers.Sidwell, new List<EventType>{ EventType.PIANO, EventType.LYNN_FREEMAN_OLSON })
-            
+            new Room(6, 0, 10, Teachers.Sidwell, new List<EventType>{ EventType.PIANO, EventType.LYNN_FREEMAN_OLSON })         
         };
 
-        public Core(string inputFile)
+        public Core(string inputFile, string outputFile)
         {
             this.InputFile = inputFile;
+            this.OutputFile = outputFile;
         }
 
         public void Run()
@@ -36,7 +38,18 @@ namespace Schedule
             //Randomize data
             events = events.Randomize().ToList();
 
-            foreach(var evnt in events.FindAll(x => x.TypeOfEvent == EventType.LYNN_FREEMAN_OLSON))
+            HandleRoomAssignments(events);
+
+            foreach(var room in Rooms)
+            {
+                var path = OutputFile + "-" + room.Teacher.ToString();
+                WriteRoomToFile(room, path);
+            }
+        }
+
+        private void HandleRoomAssignments(List<Event> events)
+        {
+            foreach (var evnt in events.FindAll(x => x.TypeOfEvent == EventType.LYNN_FREEMAN_OLSON))
             {
                 List<Room> applicableRooms = Rooms.FindAll(x => x.CanAssignRoom(evnt));
 
@@ -69,7 +82,7 @@ namespace Schedule
             foreach (var evnt in events.FindAll(x => x.TypeOfEvent == EventType.PIANO_SIGHT_READING))
             {
                 List<Room> applicableRooms = Rooms.FindAll(x => x.CanAssignRoom(evnt));
-                for(int i = 0; i < Rooms.Count; i++)
+                for (int i = 0; i < Rooms.Count; i++)
                 {
                     Rooms[i].RoomBuffer = 3;
                 }
@@ -103,7 +116,6 @@ namespace Schedule
                     throw new ArgumentException("Could not match event to an judge.");
                 }
             }
-
         }
 
         private List<InputEvent> GetEvents()
@@ -116,6 +128,33 @@ namespace Schedule
             }
 
             return events;
+        }
+
+        private void WriteRoomToFile(Room room, string path)
+        {
+            string data = WriteToString(room);
+            File.WriteAllText(path + ".txt", data);
+        }
+
+        private string WriteToString(Room room)
+        {
+            string result = string.Empty;
+            using (var mem = new MemoryStream())
+            using (var writer = new StreamWriter(mem))
+            using (var csvWriter = new CsvWriter(writer))
+            {
+                csvWriter.Configuration.Delimiter = ",";
+                csvWriter.Configuration.HasHeaderRecord = true;
+                csvWriter.Configuration.AutoMap<Event>();
+
+                csvWriter.WriteHeader<Event>();
+                csvWriter.WriteRecords(room.RoomEvents);
+
+                writer.Flush();
+                result = Encoding.UTF8.GetString(mem.ToArray());               
+            }
+
+            return result;
         }
 
         private void ReorderRooms()

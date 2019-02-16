@@ -14,7 +14,7 @@ namespace Schedule
         public int RoomBuffer { get; set; } = 0;
 
         public int CurrentAllocatedTime { get; set; } // In Minutes
-        List<Event> RoomEvents { get; set; }
+        public List<Event> RoomEvents { get; set; }
 
         public Room(int roomId, int minLevel, int maxLevel, Teachers teacher, List<EventType> supportedEventTypes)
         {
